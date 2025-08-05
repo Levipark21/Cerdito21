@@ -12,6 +12,7 @@
       height: 100%;
       overflow: hidden;
       background-color: #ffffff;
+      font-family: Arial, sans-serif;
     }
 
     model-viewer {
@@ -21,24 +22,54 @@
       border: none;
     }
 
+    #title {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      right: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      z-index: 10;
+    }
+
     #modelSelector {
       position: absolute;
-      top: 20px;
+      top: 60px;
       left: 20px;
       padding: 10px;
       font-size: 16px;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0.85);
       border: 1px solid #ccc;
       border-radius: 5px;
       z-index: 10;
+    }
+
+    model-viewer::part(default-ar-button) {
+      position: absolute;
+      top: 110px; /* Justo debajo del selector */
+      left: 20px;
+      z-index: 10;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      color: #000;
     }
   </style>
 </head>
 <body>
 
+  <div id="title">Levipark21 - Línea Qubiq - Cerdito</div>
+
   <select id="modelSelector">
     <option value="CERDITO.glb">Cerdito</option>
-    <option value="CERDITO-EST01.glb">Cerdito Est01</option>
+    <option value="CERDITO-EST01.glb" selected>Cerdito Est01</option>
     <option value="CERDITO-EST02.glb">Cerdito Est02</option>
     <option value="CERDITO-EST03.glb">Cerdito Est03</option>
     <option value="CERDITO-EST04.glb">Cerdito Est04</option>
@@ -50,11 +81,13 @@
 
   <model-viewer
     id="modelViewer"
-    src="CERDITO.glb"
+    src="CERDITO-EST01.glb"
     alt="Modelo 3D de cerdito"
     auto-rotate
     camera-controls
     ar
+    ar-modes="scene-viewer webxr quick-look"
+    ar-scale="auto"
     loading="eager"
   ></model-viewer>
 
@@ -69,6 +102,7 @@
 
 </body>
 </html>
+
 
 
 
