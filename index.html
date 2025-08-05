@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Selector de Modelos GLB - Cerdito</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+    model-viewer {
+      width: 600px;
+      height: 600px;
+      background-color: #fff;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Selector de Cerditos GLB</h1>
+
+  <select id="modelSelector">
+    <option value="CERDITO-EST01.glb">Cerdito Estilo 01</option>
+    <option value="CERDITO-EST02.glb">Cerdito Estilo 02</option>
+    <option value="CERDITO-EST03.glb">Cerdito Estilo 03</option>
+    <option value="CERDITO-EST04.glb">Cerdito Estilo 04</option>
+    <option value="CERDITO-EST05.glb">Cerdito Estilo 05</option>
+    <option value="CERDITO-EST06.glb">Cerdito Estilo 06</option>
+  </select>
+
+  <br>
+
+  <model-viewer id="modelViewer" src="CERDITO-EST01.glb" alt="Modelo 3D de cerdito" auto-rotate camera-controls ar></model-viewer>
+
+  <script>
+    const selector = document.getElementById('modelSelector');
+    const viewer = document.getElementById('modelViewer');
+
+    selector.addEventListener('change', () => {
+      viewer.src = selector.value;
+    });
+  </script>
+
+</body>
+</html>
