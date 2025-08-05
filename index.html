@@ -2,51 +2,39 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Selector de Modelos GLB - Cerdito</title>
+  <title>Modelo 3D - Pantalla completa</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    h1 {
-      margin-top: 20px;
-    }
-
-    #modelSelector {
-      padding: 10px;
-      font-size: 16px;
-      margin: 20px 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #ffffff;
     }
 
     model-viewer {
-      width: 80vw;
-      max-width: 800px;
-      height: 80vh;
-      max-height: 600px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      width: 100vw;
+      height: 100vh;
+      background-color: #ffffff;
+      border: none;
     }
 
-    #loadingText {
-      font-size: 18px;
-      color: #555;
-      margin: 10px 0;
+    #modelSelector {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
-
-  <h1>Levipark21 Línea Qubiq - CERDITO</h1>
 
   <select id="modelSelector">
     <option value="CERDITO.glb">Cerdito</option>
@@ -59,8 +47,6 @@
     <option value="CERDITO-ESTRUCTURA-fit.glb">Cerdito Estructura</option>
     <option value="CERDITO-EST-INTERIOR.glb">Cerdito Interior</option>
   </select>
-
-  <p id="loadingText">Cargando modelo...</p>
 
   <model-viewer
     id="modelViewer"
@@ -75,25 +61,15 @@
   <script>
     const selector = document.getElementById('modelSelector');
     const viewer = document.getElementById('modelViewer');
-    const loadingText = document.getElementById('loadingText');
 
     selector.addEventListener('change', () => {
       viewer.src = selector.value;
-      loadingText.style.display = 'block';
-    });
-
-    viewer.addEventListener('load', () => {
-      loadingText.style.display = 'none';
-    });
-
-    // Ocultar el mensaje al iniciar si el primer modelo ya está cargado
-    window.addEventListener('load', () => {
-      loadingText.style.display = 'none';
     });
   </script>
 
 </body>
 </html>
+
 
 
 
