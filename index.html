@@ -7,19 +7,40 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      text-align: center;
+      margin: 0;
+      padding: 0;
       background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
-    model-viewer {
-      width: 600px;
-      height: 600px;
-      background-color: #fff;
+
+    h1 {
+      margin-top: 20px;
     }
-    select {
+
+    #modelSelector {
       padding: 10px;
       font-size: 16px;
-      margin-bottom: 20px;
+      margin: 20px 0;
+    }
+
+    model-viewer {
+      width: 80vw;
+      max-width: 800px;
+      height: 80vh;
+      max-height: 600px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #loadingText {
+      font-size: 18px;
+      color: #555;
+      margin: 10px 0;
     }
   </style>
 </head>
@@ -28,6 +49,7 @@
   <h1>Selector de Cerditos GLB</h1>
 
   <select id="modelSelector">
+    <option value="CERDITO.glb">Cerdito</option>
     <option value="CERDITO-EST01.glb">Cerdito Est01</option>
     <option value="CERDITO-EST02.glb">Cerdito Est02</option>
     <option value="CERDITO-EST03.glb">Cerdito Est03</option>
@@ -35,22 +57,43 @@
     <option value="CERDITO-EST05.glb">Cerdito Est05</option>
     <option value="CERDITO-EST06.glb">Cerdito Est06</option>
     <option value="CERDITO-ESTRUCTURA-fit.glb">Cerdito Estructura</option>
+    <option value="CERDITO-EST-INTERIOR.glb">Cerdito Interior</option>
   </select>
 
-  <br>
+  <p id="loadingText">Cargando modelo...</p>
 
-  <model-viewer id="modelViewer" src="CERDITO-EST01.glb" alt="Modelo 3D de cerdito" auto-rotate camera-controls ar></model-viewer>
+  <model-viewer
+    id="modelViewer"
+    src="CERDITO.glb"
+    alt="Modelo 3D de cerdito"
+    auto-rotate
+    camera-controls
+    ar
+    loading="eager"
+  ></model-viewer>
 
   <script>
     const selector = document.getElementById('modelSelector');
     const viewer = document.getElementById('modelViewer');
+    const loadingText = document.getElementById('loadingText');
 
     selector.addEventListener('change', () => {
       viewer.src = selector.value;
+      loadingText.style.display = 'block';
+    });
+
+    viewer.addEventListener('load', () => {
+      loadingText.style.display = 'none';
+    });
+
+    // Ocultar el mensaje al iniciar si el primer modelo ya está cargado
+    window.addEventListener('load', () => {
+      loadingText.style.display = 'none';
     });
   </script>
 
 </body>
 </html>
+
 
 
